@@ -17,9 +17,9 @@ class Loader:
         self.model_path = ""
         self.src = None
         self.parser = argparse.ArgumentParser(
-                        prog='Vehicle-detector',
-                        description='Vehicle detection',
-                        )
+            prog='Vehicle-detector',
+            description='Vehicle detection',
+        )
         self.isVideo = False
         self.img_size = 0
 
@@ -33,13 +33,12 @@ class Loader:
         Returns:
             None
         """
-       
-        group = self.parser.add_mutually_exclusive_group(required=True) 
-        self.parser.add_argument('model_path')
+
+        group = self.parser.add_mutually_exclusive_group(required=True)
+        self.parser.add_argument('model_path', type=str)
         self.parser.add_argument('img_size', type=int)
-        group.add_argument('-v', '--video')      
-        group.add_argument('-i', '--image') 
-        
+        group.add_argument('-v', '--video')
+        group.add_argument('-i', '--image')
 
         args = self.parser.parse_args()
 
@@ -47,16 +46,6 @@ class Loader:
         self.img_size = args.img_size
         self.src_path = args.video if args.video is not None else args.image
         self.isVideo = True if args.video is not None else False
-
-
-    def __preprocess(self):
-        """
-        
-        """
-        self.src = cv2.imread(self.src_path)
-        #заглушка
-        #возможно сделаем какие-то доп предобработки (не факт)
-        
 
     def __call__(self):
         """
@@ -70,10 +59,10 @@ class Loader:
         """
         self.__parse()
 
-        self.src = cv2.VideoCapture(self.src_path) if self.isVideo else cv2.imread(self.src_path)
+        self.src = cv2.VideoCapture(
+            self.src_path) if self.isVideo else cv2.imread(self.src_path)
 
         return (self.src, self.model_path, self.isVideo, self.img_size)
-        
 
 
 if __name__ == "__main__":
