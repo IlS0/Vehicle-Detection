@@ -1,34 +1,65 @@
-from loader import Loader
-from detector import Detector
-import cv2
-
-from datetime import datetime
 from os import makedirs
+from datetime import datetime
+
+from loader import Loader
+from detector import VehicleDetector
+import cv2
 
 
 class Main():
+    """
+    A class for program modules management.
+
+    Attributes:
+        loader (Loader): Command line arguments loader.
+        input (MatLike | VideoCapture):  Input.
+        model_path (str): Path to a model file.
+        isVideo(bool): Input type flag.
+        img_size(int): Size of an input image.
+        detector (Detector): Object detector.
+    """
+
     def __init__(self):
+        """
+        Initializes the Main object.
+
+        Args:
+           None
+
+        Returns:
+            None
+        """
         self.loader = Loader()
-        self.src, self.model_path, self.isVideo, self.img_size = self.loader()
-        self.detector = Detector(self.model_path, self.img_size)
+        self.input, self.model_path, self.isVideo, self.img_size = self.loader()
+        self.detector = VehicleDetector(self.model_path, self.img_size)
 
     def __call__(self):
+        """
+        Calls the Main object to run program modules.
+
+        Args:
+           None
+
+        Returns:
+            None
+        """
         makedirs("results", exist_ok=True)
 
         if self.isVideo:
             makedirs("results/video", exist_ok=True)
 
-            res = self.detector.video_run(self.src)
+            res = self.detector.video_run(self.input)
 
             with open(f"results/video/v_predict_{datetime.now()}.mp4", "wb") as file:
                 file.write(res.getbuffer())
         else:
             makedirs("results/images", exist_ok=True)
 
-            res = self.detector(self.src)
+            res = self.detector(self.input)
 
             cv2.imwrite(f"results/images/i_predict_{datetime.now()}.png", res)
 
 
-main = Main()
-main()
+if __name__ == "__main__":
+    main = Main()
+    main()

@@ -1,28 +1,33 @@
 import io
 import random
+
 import numpy as np
 import av
 import cv2
 import onnxruntime
 
 
-class Detector():
-    """_summary_
-    
+class VehicleDetector():
     """
+    A class to vehicle detection. 
+
+    Attributes:
+        size (int): Size of an input image.
+    """
+
     def __init__(self, model_path, size) -> None:
         """
-        Initialize the MyDetector object.
+        Initializes the VehicleDetector object.
 
         Args:
-            model_path (str): Path to the model file.
-            size (tuple): Size of the input image.
+            model_path (str): Path to a model file.
+            size (tuple): Size of an input image.
 
         Returns:
             None
         """
 
-        self.__size = size
+        self.size = size
         self.__mean = [0.485, 0.456, 0.406]
         self.__std = [0.229, 0.224, 0.225]
         self.__names = ['bike', 'bus', 'car', 'construction equipment',
@@ -39,19 +44,20 @@ class Detector():
         self.__ratio = 0
         self.__dwdh = 0
 
-    def letterbox(self, img, new_shape, color=(114, 114, 114), auto=True, scaleup=True, stride=32):
-        """_summary_
+    def __letterbox(self, img, new_shape, color=(114, 114, 114), auto=True, scaleup=True, stride=32):
+        """
+        Processes an image using letterbox method.
 
         Args:
-            img (_type_): _description_
-            new_shape (_type_): _description_
-            color (tuple, optional): _description_. Defaults to (114, 114, 114).
-            auto (bool, optional): _description_. Defaults to True.
-            scaleup (bool, optional): _description_. Defaults to True.
-            stride (int, optional): _description_. Defaults to 32.
+            img (numpy.ndarray): Image.
+            new_shape (int | tuple): Size of a new image.
+            color (tuple, optional): Border filling color. Defaults to (114, 114, 114).
+            auto (bool, optional): Flag for automatically adding padding.. Defaults to True.
+            scaleup (bool, optional): Flag to image upscale. Defaults to True.
+            stride (int, optional): Stride to padding. Defaults to 32.
 
         Returns:
-            _type_: _description_
+            tuple: (processed image, computed ratio, (new width value, new height value))
         """
 
         # Resize and pad image while meeting stride-multiple constraints
@@ -87,12 +93,12 @@ class Detector():
 
         return img, ratio, (dw, dh)
 
-    def forward(self, img):
+    def __forward(self, img):
         """
-        Perform forward pass on the input image.
+        Performs forward pass on the input image.
 
         Args:
-            bgr_img (numpy.ndarray): Input RGB image.
+            img (numpy.ndarray): Input BGR image.
 
         Returns:
             numpy.ndarray: Output of the forward pass.
@@ -101,8 +107,8 @@ class Detector():
         img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
         rgb_img = img.copy()
 
-        rgb_img, self.__ratio, self.__dwdh = self.letterbox(
-            rgb_img, self.__size, auto=False)
+        rgb_img, self.__ratio, self.__dwdh = self.__letterbox(
+            rgb_img, self.size, auto=False)
         rgb_img = rgb_img.transpose((2, 0, 1))
         rgb_img = np.expand_dims(rgb_img, 0)
         rgb_img = np.ascontiguousarray(rgb_img)
@@ -115,12 +121,13 @@ class Detector():
 
         return self.__session.run(self.__output_names, {self.__input_names[0]: rgb_img})[0]
 
-    def post_process(self, output, img):
+    def __post_process(self, output, img):
         """
-        Post-process the output of the model.
+        Post-processes an output of a model.
 
         Args:
-            output (tuple): Output of the model.
+            output (tuple): Output of a model.
+            img (numpy.ndarray): Image to post-process.
 
         Returns:
             tuple: Processed bounding boxes and class IDs.
@@ -149,19 +156,19 @@ class Detector():
 
     def draw_box(self, img):
         """
-        Draw bounding boxes on the input image.
+        Draws bounding boxes on the input image.
 
         Args:
             img (numpy.ndarray): Input image.
 
         Returns:
-            numpy.ndarray: Image with bounding boxes drawn.
+            numpy.ndarray: Image with drawn bounding boxes.
         """
 
-        output = self.post_process(self.forward(img), img)
+        output = self.__post_process(self.__forward(img), img)
         bboxes, class_ids, scores = output
         out_len = len(bboxes)
-        
+
         res_img = img.copy()
 
         for idx in range(out_len):
@@ -169,7 +176,7 @@ class Detector():
             name = self.__names[class_ids[idx]]
 
             color = self.__colors[name]
-            
+
             cv2.rectangle(res_img, bboxes[idx][:2], bboxes[idx][2:], color, 2)
 
             cv2.putText(res_img, f"{name} {scores[idx]}", (bboxes[idx][0], bboxes[idx]
@@ -179,10 +186,10 @@ class Detector():
 
     def video_run(self, cap):
         """
-        Process video frames and draw bounding boxes.
+        Processes video frames.
 
         Args:
-            cap: Video capture object.
+            cap (VideoCapture): Video capture object.
 
         Returns:
             io.BytesIO: In-memory file containing the processed video.
@@ -194,7 +201,7 @@ class Detector():
         output_memory_file = io.BytesIO()
         # Open "in memory file" as MP4 video output
         output_f = av.open(output_memory_file, 'w', format="mp4")
-        
+
         # Add H.264 video stream to the MP4 container, with framerate
         stream = output_f.add_stream('h264', f"{fps}")
 
@@ -219,13 +226,13 @@ class Detector():
 
     def __call__(self, img):
         """
-        Call the MyDetector object to process an input image.
+        Calls the VehicleDetector object to process an input image.
 
         Args:
-            rgb_img (numpy.ndarray): Input RGB image.
+            img (numpy.ndarray): Input RGB image.
 
         Returns:
-            tuple: Processed bounding boxes and class IDs.
+            numpy.ndarray: Image with drawn bounding boxes.
         """
 
         return self.draw_box(img)

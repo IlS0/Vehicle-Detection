@@ -1,8 +1,21 @@
-import cv2
 import argparse
+
+import cv2
 
 
 class Loader:
+    """
+    A class to parse and save command line arguments.
+
+    Attributes:
+        model_path (str): Path to a model file.
+        inp_path (str): Path to an input.
+        input (MatLike | VideoCapture): Input.
+        parser (ArgumentParser): Command line parser.
+        isVideo (bool): Input type flag.
+        img_size (int): Size of an input image.
+    """
+
     def __init__(self):
         """
         Initializes the Loader object.
@@ -13,9 +26,10 @@ class Loader:
         Returns:
             None
         """
-        self.src_path = ""
+
         self.model_path = ""
-        self.src = None
+        self.inp_path = ""
+        self.input = None  # возможно закрыть
         self.parser = argparse.ArgumentParser(
             prog='Vehicle-detector',
             description='Vehicle detection',
@@ -23,7 +37,7 @@ class Loader:
         self.isVideo = False
         self.img_size = 0
 
-    def __parse(self):
+    def parse(self):
         """
         Parses and saves command line arguments.
 
@@ -44,27 +58,28 @@ class Loader:
 
         self.model_path = args.model_path
         self.img_size = args.img_size
-        self.src_path = args.video if args.video is not None else args.image
+        self.inp_path = args.video if args.video is not None else args.image
         self.isVideo = True if args.video is not None else False
 
     def __call__(self):
         """
-        Calls the Loader object to parse and return .
+        Calls the Loader object to parse and return the arguments.
 
         Args:
             None
 
         Returns:
-            tuple: (source (image/video cap), a path to model, flag (video -True or image - False), frame size)
+            tuple: (source (image/video cap), path to model, flag (video -True or image - False), image size)
         """
-        self.__parse()
+        self.parse()
 
-        self.src = cv2.VideoCapture(
-            self.src_path) if self.isVideo else cv2.imread(self.src_path)
+        self.input = cv2.VideoCapture(
+            self.inp_path) if self.isVideo else cv2.imread(self.inp_path)
 
-        return (self.src, self.model_path, self.isVideo, self.img_size)
+        return (self.input, self.model_path, self.isVideo, self.img_size)
 
 
 if __name__ == "__main__":
     loader = Loader()
     loader()
+    print(Loader.__doc__)
