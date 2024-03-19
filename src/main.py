@@ -1,5 +1,6 @@
 from os import makedirs
-from datetime import datetime
+from datetime import datetime, date
+#import datetime
 
 from loader import Loader
 from detector import VehicleDetector
@@ -50,14 +51,14 @@ class Main():
 
             res = self.detector.video_run(self.input)
 
-            with open(f"results/video/v_predict_{datetime.now()}.mp4", "wb") as file:
+            with open(f"results/video/v_predict_{datetime.now().strftime('%d-%m-%Y %H:%M:%S:%f')}.mp4", "wb") as file:
                 file.write(res.getbuffer())
         else:
             makedirs("results/images", exist_ok=True)
 
             res = self.detector(self.input)
 
-            cv2.imwrite(f"results/images/i_predict_{datetime.now()}.png", res)
+            cv2.imwrite(f"results/images/i_predict_{datetime.now().strftime('%d-%m-%Y %H:%M:%S:%f')}.png", res)
 
 
 if __name__ == "__main__":

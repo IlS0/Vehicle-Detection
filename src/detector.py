@@ -13,6 +13,11 @@ class VehicleDetector():
 
     Attributes:
         size (int): Size of an input image.
+        
+    Methods:
+        draw_box(img): Draws bounding boxes on the input image.
+        video_run(cap): Processes video frames.
+        
     """
 
     def __init__(self, model_path, size) -> None:
@@ -28,8 +33,8 @@ class VehicleDetector():
         """
 
         self.size = size
-        self.__mean = [0.485, 0.456, 0.406]
-        self.__std = [0.229, 0.224, 0.225]
+        # self.__mean = [0.485, 0.456, 0.406]
+        # self.__std = [0.229, 0.224, 0.225]
         self.__names = ['bike', 'bus', 'car', 'construction equipment',
                         'emergency', 'motorbike', 'personal mobility', 'quad bike', 'truck']
         self.__colors = {name: [random.randint(0, 255)
@@ -115,9 +120,9 @@ class VehicleDetector():
         rgb_img = rgb_img.astype(np.float32)
         rgb_img /= 255
 
-        rgb_img[0][0] = (rgb_img[0][0] - self.__mean[0]) / self.__std[0]
-        rgb_img[0][1] = (rgb_img[0][1] - self.__mean[1]) / self.__std[1]
-        rgb_img[0][2] = (rgb_img[0][2] - self.__mean[2]) / self.__std[2]
+        # rgb_img[0][0] = (rgb_img[0][0] - self.__mean[0]) / self.__std[0]
+        # rgb_img[0][1] = (rgb_img[0][1] - self.__mean[1]) / self.__std[1]
+        # rgb_img[0][2] = (rgb_img[0][2] - self.__mean[2]) / self.__std[2]
 
         return self.__session.run(self.__output_names, {self.__input_names[0]: rgb_img})[0]
 
