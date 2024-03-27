@@ -1,6 +1,5 @@
 from os import makedirs
 from datetime import datetime
-#import datetime
 
 from loader import Loader
 from detector import VehicleDetector
@@ -58,7 +57,8 @@ class Main():
 
             res = self.detector(self.input)
 
-            cv2.imwrite(f"results/images/i_predict_{datetime.now().strftime('%d-%m-%Y %H:%M:%S:%f')}.png", res)
+            cv2.imwrite(
+                f"results/images/i_predict_{datetime.now().strftime('%d-%m-%Y %H:%M:%S:%f')}.png", res)
 
 
 if __name__ == "__main__":

@@ -1,5 +1,7 @@
 import io
 import random
+import logging
+import time
 
 import numpy as np
 import av
@@ -13,11 +15,11 @@ class VehicleDetector():
 
     Attributes:
         size (int): Size of an input image.
-        
+
     Methods:
         draw_box(img): Draws bounding boxes on the input image.
         video_run(cap): Processes video frames.
-        
+
     """
 
     def __init__(self, model_path, size) -> None:
@@ -33,8 +35,11 @@ class VehicleDetector():
         """
 
         self.size = size
-        # self.__mean = [0.485, 0.456, 0.406]
-        # self.__std = [0.229, 0.224, 0.225]
+
+        self.logger = logging.getLogger(__name__)
+
+        logging.basicConfig(level=logging.INFO)
+
         self.__names = ['bike', 'bus', 'car', 'construction equipment',
                         'emergency', 'motorbike', 'personal mobility', 'quad bike', 'truck']
         self.__colors = {name: [random.randint(0, 255)
@@ -120,9 +125,6 @@ class VehicleDetector():
         rgb_img = rgb_img.astype(np.float32)
         rgb_img /= 255
 
-        # rgb_img[0][0] = (rgb_img[0][0] - self.__mean[0]) / self.__std[0]
-        # rgb_img[0][1] = (rgb_img[0][1] - self.__mean[1]) / self.__std[1]
-        # rgb_img[0][2] = (rgb_img[0][2] - self.__mean[2]) / self.__std[2]
 
         return self.__session.run(self.__output_names, {self.__input_names[0]: rgb_img})[0]
 
@@ -159,6 +161,10 @@ class VehicleDetector():
 
         return bboxes, class_ids, scores
 
+    def _get_yolo_out(self, img):
+        return self.__forward(img)
+
+
     def draw_box(self, img):
         """
         Draws bounding boxes on the input image.
@@ -169,7 +175,7 @@ class VehicleDetector():
         Returns:
             numpy.ndarray: Image with drawn bounding boxes.
         """
-
+        start_time = time.time()
         output = self.__post_process(self.__forward(img), img)
         bboxes, class_ids, scores = output
         out_len = len(bboxes)
@@ -186,7 +192,13 @@ class VehicleDetector():
 
             cv2.putText(res_img, f"{name} {scores[idx]}", (bboxes[idx][0], bboxes[idx]
                         [1] - 2), cv2.FONT_HERSHEY_SIMPLEX, 0.75, (255, 255, 255), thickness=2)
-
+        end_time = time.time()  # Stop measuring processing time
+        process_time = end_time - start_time  # Calculate processing time
+        # Logging processing time
+        self.logger.info(f"Processing time: {process_time:.4f} seconds")
+        # Logging detected classes
+        self.logger.info(
+            f"Detected classes: {', '.join(self.__names[class_id] for class_id in class_ids)}")
         return res_img
 
     def video_run(self, cap):
