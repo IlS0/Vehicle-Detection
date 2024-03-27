@@ -33,7 +33,7 @@ jobs:
       run: |
         autopep8 ./ --recursive --in-place -a
         flake8 . --ignore=F401,E501,W504
-        continue-on-error: true
+        # continue-on-error: true
         # stop the build if there are Python syntax errors or undefined names
         flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
         # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
