@@ -1,5 +1,5 @@
---index-url https://aiinfra.pkgs.visualstudio.com/PublicPackages/_packaging/onnxruntime-cuda-12/pypi/simple/ 
-onnxruntime_gpu==1.17.1
+
+onnxruntime_gpu==1.17.1 @ https://aiinfra.pkgs.visualstudio.com/PublicPackages/_packaging/onnxruntime-cuda-12/pypi/simple/ 
 av==11.0.0
 numpy==1.26.4
 onnxruntime==1.17.1
