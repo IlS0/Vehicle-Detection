@@ -1,5 +1,5 @@
 from os import makedirs
-from datetime import datetime, date
+from datetime import datetime
 #import datetime
 
 from loader import Loader

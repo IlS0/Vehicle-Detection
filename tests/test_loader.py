@@ -1,12 +1,8 @@
 import argparse
 import unittest
 from unittest.mock import patch
-import sys
-#import os
 
 from loader import Loader
-
-#sys.path.append(r'D:\NSU\Vehicle-Detection-main\src')
 
 path_img = "images/test_img.jpg"
 path_video = "videos/test_video.mp4"
@@ -35,7 +31,7 @@ class TestLoader(unittest.TestCase):
     @patch('sys.argv', ['script_name.py', 'model_path', '640', '-v', path_video])
     def test_video_loading(self):
         loader = Loader()
-        #video_path = os.path.abspath(path_video)
+        # video_path = os.path.abspath(path_video)
         video, _, _, _ = loader()
         self.assertIsNotNone(video)
 
