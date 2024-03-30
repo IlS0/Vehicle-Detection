@@ -1,0 +1,720 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.10.0" />
+<title>src.detector API documentation</title>
+<meta name="description" content="" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>src.detector</code></h1>
+</header>
+<section id="section-intro">
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">import io
+import random
+import logging
+import time
+
+import numpy as np
+import av
+import cv2
+import onnxruntime
+
+
+class VehicleDetector():
+    &#34;&#34;&#34;
+    A class to vehicle detection. 
+
+    Attributes:
+        size (int): Size of an input image.
+
+    Methods:
+        draw_box(img): Draws bounding boxes on the input image.
+        video_run(cap): Processes video frames.
+
+    &#34;&#34;&#34;
+
+    def __init__(self, model_path, size) -&gt; None:
+        &#34;&#34;&#34;
+        Initializes the VehicleDetector object.
+
+        Args:
+            model_path (str): Path to a model file.
+            size (tuple): Size of an input image.
+
+        Returns:
+            None
+        &#34;&#34;&#34;
+
+        self.size = size
+
+        self.logger = logging.getLogger(__name__)
+
+        logging.basicConfig(level=logging.INFO)
+
+        self.__names = [&#39;bike&#39;, &#39;bus&#39;, &#39;car&#39;, &#39;construction equipment&#39;,
+                        &#39;emergency&#39;, &#39;motorbike&#39;, &#39;personal mobility&#39;, &#39;quad bike&#39;, &#39;truck&#39;]
+        self.__colors = {name: [random.randint(0, 255)
+                                for _ in range(3)] for name in self.__names}
+        self.__session = onnxruntime.InferenceSession(
+            model_path, providers=[&#39;CUDAExecutionProvider&#39;, &#39;CPUExecutionProvider&#39;])
+        self.__input_names = [inp.name for inp in self.__session.get_inputs()]
+        self.__output_names = [
+            out.name for out in self.__session.get_outputs()]
+
+        # костыль 2
+        self.__ratio = 0
+        self.__dwdh = 0
+
+    def __letterbox(self, img, new_shape, color=(114, 114, 114), auto=True, scaleup=True, stride=32):
+        &#34;&#34;&#34;
+        Processes an image using letterbox method.
+
+        Args:
+            img (numpy.ndarray): Image.
+            new_shape (int | tuple): Size of a new image.
+            color (tuple, optional): Border filling color. Defaults to (114, 114, 114).
+            auto (bool, optional): Flag for automatically adding padding.. Defaults to True.
+            scaleup (bool, optional): Flag to image upscale. Defaults to True.
+            stride (int, optional): Stride to padding. Defaults to 32.
+
+        Returns:
+            tuple: (processed image, computed ratio, (new width value, new height value))
+        &#34;&#34;&#34;
+
+        # Resize and pad image while meeting stride-multiple constraints
+        img_shape = img.shape[:2]  # current shape [height, width]
+        if isinstance(new_shape, int):
+            new_shape = (new_shape, new_shape)
+
+        # Scale ratio (new / old)
+        ratio = min(new_shape[0] / img_shape[0], new_shape[1] / img_shape[1])
+        # only scale down, do not scale up (for better val mAP)
+        if not scaleup:
+            ratio = min(ratio, 1.0)
+
+        # Compute padding
+        new_unpad = int(round(img_shape[1] * ratio)
+                        ), int(round(img_shape[0] * ratio))
+        dw, dh = new_shape[1] - new_unpad[0], new_shape[0] - \
+            new_unpad[1]  # wh padding
+
+        if auto:  # minimum rectangle
+            dw, dh = np.mod(dw, stride), np.mod(dh, stride)  # wh padding
+
+        dw /= 2  # divide padding into 2 sides
+        dh /= 2
+
+        if img_shape[::-1] != new_unpad:  # resize
+            img = cv2.resize(img, new_unpad, interpolation=cv2.INTER_LINEAR)
+
+        top, bottom = int(round(dh - 0.1)), int(round(dh + 0.1))
+        left, right = int(round(dw - 0.1)), int(round(dw + 0.1))
+        img = cv2.copyMakeBorder(
+            img, top, bottom, left, right, cv2.BORDER_CONSTANT, value=color)  # add border
+
+        return img, ratio, (dw, dh)
+
+    def __forward(self, img):
+        &#34;&#34;&#34;
+        Performs forward pass on the input image.
+
+        Args:
+            img (numpy.ndarray): Input BGR image.
+
+        Returns:
+            numpy.ndarray: Output of the forward pass.
+        &#34;&#34;&#34;
+
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+        rgb_img = img.copy()
+
+        rgb_img, self.__ratio, self.__dwdh = self.__letterbox(
+            rgb_img, self.size, auto=False)
+        rgb_img = rgb_img.transpose((2, 0, 1))
+        rgb_img = np.expand_dims(rgb_img, 0)
+        rgb_img = np.ascontiguousarray(rgb_img)
+        rgb_img = rgb_img.astype(np.float32)
+        rgb_img /= 255
+
+
+        return self.__session.run(self.__output_names, {self.__input_names[0]: rgb_img})[0]
+
+    def __post_process(self, output, img):
+        &#34;&#34;&#34;
+        Post-processes an output of a model.
+
+        Args:
+            output (tuple): Output of a model.
+            img (numpy.ndarray): Image to post-process.
+
+        Returns:
+            tuple: Processed bounding boxes and class IDs.
+        &#34;&#34;&#34;
+
+        bboxes = []
+        scores = []
+        class_ids = []
+        ori_images = [img.copy()]
+
+        for batch_id, x0, y0, x1, y1, class_id, score in output:
+            img = ori_images[int(batch_id)]
+            box = np.array([x0, y0, x1, y1])
+            box -= np.array(self.__dwdh*2)
+            box /= self.__ratio
+            box = box.round().astype(np.int32).tolist()
+            bboxes.append(box)
+
+            class_id = int(class_id)
+            class_ids.append(class_id)
+
+            score = round(float(score), 3)
+            scores.append(score)
+
+        return bboxes, class_ids, scores
+
+    def _get_yolo_out(self, img):
+        return self.__forward(img)
+
+
+    def draw_box(self, img):
+        &#34;&#34;&#34;
+        Draws bounding boxes on the input image.
+
+        Args:
+            img (numpy.ndarray): Input image.
+
+        Returns:
+            numpy.ndarray: Image with drawn bounding boxes.
+        &#34;&#34;&#34;
+        start_time = time.time()
+        output = self.__post_process(self.__forward(img), img)
+        bboxes, class_ids, scores = output
+        out_len = len(bboxes)
+
+        res_img = img.copy()
+
+        for idx in range(out_len):
+
+            name = self.__names[class_ids[idx]]
+
+            color = self.__colors[name]
+
+            cv2.rectangle(res_img, bboxes[idx][:2], bboxes[idx][2:], color, 2)
+
+            cv2.putText(res_img, f&#34;{name} {scores[idx]}&#34;, (bboxes[idx][0], bboxes[idx]
+                        [1] - 2), cv2.FONT_HERSHEY_SIMPLEX, 0.75, (255, 255, 255), thickness=2)
+        end_time = time.time()  # Stop measuring processing time
+        process_time = end_time - start_time  # Calculate processing time
+        # Logging processing time
+        self.logger.info(f&#34;Processing time: {process_time:.4f} seconds&#34;)
+        # Logging detected classes
+        self.logger.info(
+            f&#34;Detected classes: {&#39;, &#39;.join(self.__names[class_id] for class_id in class_ids)}&#34;)
+        return res_img
+
+    def video_run(self, cap):
+        &#34;&#34;&#34;
+        Processes video frames.
+
+        Args:
+            cap (VideoCapture): Video capture object.
+
+        Returns:
+            io.BytesIO: In-memory file containing the processed video.
+        &#34;&#34;&#34;
+        fps = cap.get(cv2.CAP_PROP_FPS)
+        if (fps == 0.0):
+            fps = 30
+
+        output_memory_file = io.BytesIO()
+        # Open &#34;in memory file&#34; as MP4 video output
+        output_f = av.open(output_memory_file, &#39;w&#39;, format=&#34;mp4&#34;)
+
+        # Add H.264 video stream to the MP4 container, with framerate
+        stream = output_f.add_stream(&#39;h264&#39;, f&#34;{fps}&#34;)
+
+        while True:
+            ret, frame = cap.read()
+
+            if not ret:
+                break
+
+            res_img = self.draw_box(frame)
+            # Convert image from NumPy Array to frame.
+            res_img = av.VideoFrame.from_ndarray(res_img, format=&#39;bgr24&#39;)
+            packet = stream.encode(res_img)  # Encode video frame
+            # &#34;Mux&#34; the encoded frame (add the encoded frame to MP4 file).
+            output_f.mux(packet)
+
+        # Flush the encoder
+        packet = stream.encode(None)
+        output_f.mux(packet)
+        output_f.close()
+        return output_memory_file
+
+    def __call__(self, img):
+        &#34;&#34;&#34;
+        Calls the VehicleDetector object to process an input image.
+
+        Args:
+            img (numpy.ndarray): Input RGB image.
+
+        Returns:
+            numpy.ndarray: Image with drawn bounding boxes.
+        &#34;&#34;&#34;
+
+        return self.draw_box(img)</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="src.detector.VehicleDetector"><code class="flex name class">
+<span>class <span class="ident">VehicleDetector</span></span>
+<span>(</span><span>model_path, size)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>A class to vehicle detection. </p>
+<h2 id="attributes">Attributes</h2>
+<dl>
+<dt><strong><code>size</code></strong> :&ensp;<code>int</code></dt>
+<dd>Size of an input image.</dd>
+</dl>
+<h2 id="methods">Methods</h2>
+<p>draw_box(img): Draws bounding boxes on the input image.
+video_run(cap): Processes video frames.</p>
+<p>Initializes the VehicleDetector object.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>model_path</code></strong> :&ensp;<code>str</code></dt>
+<dd>Path to a model file.</dd>
+<dt><strong><code>size</code></strong> :&ensp;<code>tuple</code></dt>
+<dd>Size of an input image.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>None</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class VehicleDetector():
+    &#34;&#34;&#34;
+    A class to vehicle detection. 
+
+    Attributes:
+        size (int): Size of an input image.
+
+    Methods:
+        draw_box(img): Draws bounding boxes on the input image.
+        video_run(cap): Processes video frames.
+
+    &#34;&#34;&#34;
+
+    def __init__(self, model_path, size) -&gt; None:
+        &#34;&#34;&#34;
+        Initializes the VehicleDetector object.
+
+        Args:
+            model_path (str): Path to a model file.
+            size (tuple): Size of an input image.
+
+        Returns:
+            None
+        &#34;&#34;&#34;
+
+        self.size = size
+
+        self.logger = logging.getLogger(__name__)
+
+        logging.basicConfig(level=logging.INFO)
+
+        self.__names = [&#39;bike&#39;, &#39;bus&#39;, &#39;car&#39;, &#39;construction equipment&#39;,
+                        &#39;emergency&#39;, &#39;motorbike&#39;, &#39;personal mobility&#39;, &#39;quad bike&#39;, &#39;truck&#39;]
+        self.__colors = {name: [random.randint(0, 255)
+                                for _ in range(3)] for name in self.__names}
+        self.__session = onnxruntime.InferenceSession(
+            model_path, providers=[&#39;CUDAExecutionProvider&#39;, &#39;CPUExecutionProvider&#39;])
+        self.__input_names = [inp.name for inp in self.__session.get_inputs()]
+        self.__output_names = [
+            out.name for out in self.__session.get_outputs()]
+
+        # костыль 2
+        self.__ratio = 0
+        self.__dwdh = 0
+
+    def __letterbox(self, img, new_shape, color=(114, 114, 114), auto=True, scaleup=True, stride=32):
+        &#34;&#34;&#34;
+        Processes an image using letterbox method.
+
+        Args:
+            img (numpy.ndarray): Image.
+            new_shape (int | tuple): Size of a new image.
+            color (tuple, optional): Border filling color. Defaults to (114, 114, 114).
+            auto (bool, optional): Flag for automatically adding padding.. Defaults to True.
+            scaleup (bool, optional): Flag to image upscale. Defaults to True.
+            stride (int, optional): Stride to padding. Defaults to 32.
+
+        Returns:
+            tuple: (processed image, computed ratio, (new width value, new height value))
+        &#34;&#34;&#34;
+
+        # Resize and pad image while meeting stride-multiple constraints
+        img_shape = img.shape[:2]  # current shape [height, width]
+        if isinstance(new_shape, int):
+            new_shape = (new_shape, new_shape)
+
+        # Scale ratio (new / old)
+        ratio = min(new_shape[0] / img_shape[0], new_shape[1] / img_shape[1])
+        # only scale down, do not scale up (for better val mAP)
+        if not scaleup:
+            ratio = min(ratio, 1.0)
+
+        # Compute padding
+        new_unpad = int(round(img_shape[1] * ratio)
+                        ), int(round(img_shape[0] * ratio))
+        dw, dh = new_shape[1] - new_unpad[0], new_shape[0] - \
+            new_unpad[1]  # wh padding
+
+        if auto:  # minimum rectangle
+            dw, dh = np.mod(dw, stride), np.mod(dh, stride)  # wh padding
+
+        dw /= 2  # divide padding into 2 sides
+        dh /= 2
+
+        if img_shape[::-1] != new_unpad:  # resize
+            img = cv2.resize(img, new_unpad, interpolation=cv2.INTER_LINEAR)
+
+        top, bottom = int(round(dh - 0.1)), int(round(dh + 0.1))
+        left, right = int(round(dw - 0.1)), int(round(dw + 0.1))
+        img = cv2.copyMakeBorder(
+            img, top, bottom, left, right, cv2.BORDER_CONSTANT, value=color)  # add border
+
+        return img, ratio, (dw, dh)
+
+    def __forward(self, img):
+        &#34;&#34;&#34;
+        Performs forward pass on the input image.
+
+        Args:
+            img (numpy.ndarray): Input BGR image.
+
+        Returns:
+            numpy.ndarray: Output of the forward pass.
+        &#34;&#34;&#34;
+
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+        rgb_img = img.copy()
+
+        rgb_img, self.__ratio, self.__dwdh = self.__letterbox(
+            rgb_img, self.size, auto=False)
+        rgb_img = rgb_img.transpose((2, 0, 1))
+        rgb_img = np.expand_dims(rgb_img, 0)
+        rgb_img = np.ascontiguousarray(rgb_img)
+        rgb_img = rgb_img.astype(np.float32)
+        rgb_img /= 255
+
+
+        return self.__session.run(self.__output_names, {self.__input_names[0]: rgb_img})[0]
+
+    def __post_process(self, output, img):
+        &#34;&#34;&#34;
+        Post-processes an output of a model.
+
+        Args:
+            output (tuple): Output of a model.
+            img (numpy.ndarray): Image to post-process.
+
+        Returns:
+            tuple: Processed bounding boxes and class IDs.
+        &#34;&#34;&#34;
+
+        bboxes = []
+        scores = []
+        class_ids = []
+        ori_images = [img.copy()]
+
+        for batch_id, x0, y0, x1, y1, class_id, score in output:
+            img = ori_images[int(batch_id)]
+            box = np.array([x0, y0, x1, y1])
+            box -= np.array(self.__dwdh*2)
+            box /= self.__ratio
+            box = box.round().astype(np.int32).tolist()
+            bboxes.append(box)
+
+            class_id = int(class_id)
+            class_ids.append(class_id)
+
+            score = round(float(score), 3)
+            scores.append(score)
+
+        return bboxes, class_ids, scores
+
+    def _get_yolo_out(self, img):
+        return self.__forward(img)
+
+
+    def draw_box(self, img):
+        &#34;&#34;&#34;
+        Draws bounding boxes on the input image.
+
+        Args:
+            img (numpy.ndarray): Input image.
+
+        Returns:
+            numpy.ndarray: Image with drawn bounding boxes.
+        &#34;&#34;&#34;
+        start_time = time.time()
+        output = self.__post_process(self.__forward(img), img)
+        bboxes, class_ids, scores = output
+        out_len = len(bboxes)
+
+        res_img = img.copy()
+
+        for idx in range(out_len):
+
+            name = self.__names[class_ids[idx]]
+
+            color = self.__colors[name]
+
+            cv2.rectangle(res_img, bboxes[idx][:2], bboxes[idx][2:], color, 2)
+
+            cv2.putText(res_img, f&#34;{name} {scores[idx]}&#34;, (bboxes[idx][0], bboxes[idx]
+                        [1] - 2), cv2.FONT_HERSHEY_SIMPLEX, 0.75, (255, 255, 255), thickness=2)
+        end_time = time.time()  # Stop measuring processing time
+        process_time = end_time - start_time  # Calculate processing time
+        # Logging processing time
+        self.logger.info(f&#34;Processing time: {process_time:.4f} seconds&#34;)
+        # Logging detected classes
+        self.logger.info(
+            f&#34;Detected classes: {&#39;, &#39;.join(self.__names[class_id] for class_id in class_ids)}&#34;)
+        return res_img
+
+    def video_run(self, cap):
+        &#34;&#34;&#34;
+        Processes video frames.
+
+        Args:
+            cap (VideoCapture): Video capture object.
+
+        Returns:
+            io.BytesIO: In-memory file containing the processed video.
+        &#34;&#34;&#34;
+        fps = cap.get(cv2.CAP_PROP_FPS)
+        if (fps == 0.0):
+            fps = 30
+
+        output_memory_file = io.BytesIO()
+        # Open &#34;in memory file&#34; as MP4 video output
+        output_f = av.open(output_memory_file, &#39;w&#39;, format=&#34;mp4&#34;)
+
+        # Add H.264 video stream to the MP4 container, with framerate
+        stream = output_f.add_stream(&#39;h264&#39;, f&#34;{fps}&#34;)
+
+        while True:
+            ret, frame = cap.read()
+
+            if not ret:
+                break
+
+            res_img = self.draw_box(frame)
+            # Convert image from NumPy Array to frame.
+            res_img = av.VideoFrame.from_ndarray(res_img, format=&#39;bgr24&#39;)
+            packet = stream.encode(res_img)  # Encode video frame
+            # &#34;Mux&#34; the encoded frame (add the encoded frame to MP4 file).
+            output_f.mux(packet)
+
+        # Flush the encoder
+        packet = stream.encode(None)
+        output_f.mux(packet)
+        output_f.close()
+        return output_memory_file
+
+    def __call__(self, img):
+        &#34;&#34;&#34;
+        Calls the VehicleDetector object to process an input image.
+
+        Args:
+            img (numpy.ndarray): Input RGB image.
+
+        Returns:
+            numpy.ndarray: Image with drawn bounding boxes.
+        &#34;&#34;&#34;
+
+        return self.draw_box(img)</code></pre>
+</details>
+<h3>Methods</h3>
+<dl>
+<dt id="src.detector.VehicleDetector.draw_box"><code class="name flex">
+<span>def <span class="ident">draw_box</span></span>(<span>self, img)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Draws bounding boxes on the input image.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>img</code></strong> :&ensp;<code>numpy.ndarray</code></dt>
+<dd>Input image.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>numpy.ndarray</code></dt>
+<dd>Image with drawn bounding boxes.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def draw_box(self, img):
+    &#34;&#34;&#34;
+    Draws bounding boxes on the input image.
+
+    Args:
+        img (numpy.ndarray): Input image.
+
+    Returns:
+        numpy.ndarray: Image with drawn bounding boxes.
+    &#34;&#34;&#34;
+    start_time = time.time()
+    output = self.__post_process(self.__forward(img), img)
+    bboxes, class_ids, scores = output
+    out_len = len(bboxes)
+
+    res_img = img.copy()
+
+    for idx in range(out_len):
+
+        name = self.__names[class_ids[idx]]
+
+        color = self.__colors[name]
+
+        cv2.rectangle(res_img, bboxes[idx][:2], bboxes[idx][2:], color, 2)
+
+        cv2.putText(res_img, f&#34;{name} {scores[idx]}&#34;, (bboxes[idx][0], bboxes[idx]
+                    [1] - 2), cv2.FONT_HERSHEY_SIMPLEX, 0.75, (255, 255, 255), thickness=2)
+    end_time = time.time()  # Stop measuring processing time
+    process_time = end_time - start_time  # Calculate processing time
+    # Logging processing time
+    self.logger.info(f&#34;Processing time: {process_time:.4f} seconds&#34;)
+    # Logging detected classes
+    self.logger.info(
+        f&#34;Detected classes: {&#39;, &#39;.join(self.__names[class_id] for class_id in class_ids)}&#34;)
+    return res_img</code></pre>
+</details>
+</dd>
+<dt id="src.detector.VehicleDetector.video_run"><code class="name flex">
+<span>def <span class="ident">video_run</span></span>(<span>self, cap)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Processes video frames.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>cap</code></strong> :&ensp;<code>VideoCapture</code></dt>
+<dd>Video capture object.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>io.BytesIO</code></dt>
+<dd>In-memory file containing the processed video.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def video_run(self, cap):
+    &#34;&#34;&#34;
+    Processes video frames.
+
+    Args:
+        cap (VideoCapture): Video capture object.
+
+    Returns:
+        io.BytesIO: In-memory file containing the processed video.
+    &#34;&#34;&#34;
+    fps = cap.get(cv2.CAP_PROP_FPS)
+    if (fps == 0.0):
+        fps = 30
+
+    output_memory_file = io.BytesIO()
+    # Open &#34;in memory file&#34; as MP4 video output
+    output_f = av.open(output_memory_file, &#39;w&#39;, format=&#34;mp4&#34;)
+
+    # Add H.264 video stream to the MP4 container, with framerate
+    stream = output_f.add_stream(&#39;h264&#39;, f&#34;{fps}&#34;)
+
+    while True:
+        ret, frame = cap.read()
+
+        if not ret:
+            break
+
+        res_img = self.draw_box(frame)
+        # Convert image from NumPy Array to frame.
+        res_img = av.VideoFrame.from_ndarray(res_img, format=&#39;bgr24&#39;)
+        packet = stream.encode(res_img)  # Encode video frame
+        # &#34;Mux&#34; the encoded frame (add the encoded frame to MP4 file).
+        output_f.mux(packet)
+
+    # Flush the encoder
+    packet = stream.encode(None)
+    output_f.mux(packet)
+    output_f.close()
+    return output_memory_file</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="src" href="index.html">src</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="src.detector.VehicleDetector" href="#src.detector.VehicleDetector">VehicleDetector</a></code></h4>
+<ul class="">
+<li><code><a title="src.detector.VehicleDetector.draw_box" href="#src.detector.VehicleDetector.draw_box">draw_box</a></code></li>
+<li><code><a title="src.detector.VehicleDetector.video_run" href="#src.detector.VehicleDetector.video_run">video_run</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.10.0</a>.</p>
+</footer>
+</body>
+</html>
