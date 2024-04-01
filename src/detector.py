@@ -147,7 +147,7 @@ class VehicleDetector():
 
         for batch_id, x0, y0, x1, y1, class_id, score in output:
             img = ori_images[int(batch_id)]
-            box = np.array([x0, y0, x1, y1])
+            box = np.array([x0, y0, x1, y1], dtype=np.float32)
             box -= np.array(self.__dwdh*2)
             box /= self.__ratio
             box = box.round().astype(np.int32).tolist()
