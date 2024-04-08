@@ -1,16 +1,12 @@
 import unittest
-from unittest.mock import MagicMock, patch
 import cv2
 import numpy as np
-import sys
-import os
-sys.path.append(r'D:\NSU\Vehicle-Detection-main\src')
+
 from detector import VehicleDetector
 
-# path_img = 'D:\\NSU\\Vehicle-Detection-main\\asserts\\img\\image1.png'
-# model_path = 'D:\\NSU\\Vehicle-Detection-main\\best.onnx'
 path_img = "images/test_img.jpg"
-model_path = './best.onnx'
+model_path = 'best.onnx'
+
 
 class TestVehicleDetector(unittest.TestCase):
 
@@ -26,7 +22,8 @@ class TestVehicleDetector(unittest.TestCase):
         # Загружаем изображение для тестирования
         img = cv2.imread(path_img)
         # Вызываем функцию __letterbox
-        processed_img, ratio, _ = self.detector._VehicleDetector__letterbox(img, self.size)
+        processed_img, ratio, _ = self.detector._VehicleDetector__letterbox(
+            img, self.size)
         # Проверяем типы возвращаемых значений
         self.assertIsInstance(processed_img, np.ndarray)
         self.assertIsInstance(ratio, float)
@@ -44,41 +41,45 @@ class TestVehicleDetector(unittest.TestCase):
     def test_output_types(self):
         output = [(0, 10, 20, 50, 60, 1, 0.95)]
         img = np.zeros((100, 100, 3), dtype=np.uint8)
-        bboxes, class_ids, scores = self.detector._VehicleDetector__post_process(output, img)
-        
+        bboxes, class_ids, scores = self.detector._VehicleDetector__post_process(
+            output, img)
+
         # Проверяем, что возвращаемые значения являются списками
         self.assertIsInstance(bboxes, list)
         self.assertIsInstance(class_ids, list)
         self.assertIsInstance(scores, list)
-    
+
     # Проверяем, что метод __post_process возвращает не пустые списки боксов, ID классов и оценок
     def test_non_empty_lists(self):
         output = [(0, 10, 20, 50, 60, 1, 0.95)]
         img = np.zeros((100, 100, 3), dtype=np.uint8)
-        bboxes, class_ids, scores = self.detector._VehicleDetector__post_process(output, img)
-        
+        bboxes, class_ids, scores = self.detector._VehicleDetector__post_process(
+            output, img)
+
         # Проверяем, что списки не пустые
         self.assertTrue(len(bboxes) > 0)
         self.assertTrue(len(class_ids) > 0)
         self.assertTrue(len(scores) > 0)
-    
+
     # Проверяем, что длина списков боксов, ID классов и оценок соответствует количеству объектов в выводе
     def test_list_lengths(self):
         output = [(0, 10, 20, 50, 60, 1, 0.95)]
         img = np.zeros((100, 100, 3), dtype=np.uint8)
-        bboxes, class_ids, scores = self.detector._VehicleDetector__post_process(output, img)
-        
+        bboxes, class_ids, scores = self.detector._VehicleDetector__post_process(
+            output, img)
+
         # Проверяем, что длина списков соответствует количеству объектов в выводе
         self.assertEqual(len(bboxes), len(output))
         self.assertEqual(len(class_ids), len(output))
         self.assertEqual(len(scores), len(output))
-    
+
     # Проверяем, что каждый элемент в списке боксов содержит 4 числа (координаты x, y верхнего левого угла и x, y нижнего правого угла)
     def test_bbox_structure(self):
         output = [(0, 10, 20, 50, 60, 1, 0.95)]
         img = np.zeros((100, 100, 3), dtype=np.uint8)
-        bboxes, _, _ = self.detector._VehicleDetector__post_process(output, img)
-        
+        bboxes, _, _ = self.detector._VehicleDetector__post_process(
+            output, img)
+
         # Проверяем, что каждый элемент в списке bboxes содержит 4 числа
         for bbox in bboxes:
             self.assertIsInstance(bbox, list)
@@ -86,22 +87,24 @@ class TestVehicleDetector(unittest.TestCase):
             for coord in bbox:
                 self.assertIsInstance(coord, int)
 
-    # Проверяем, что каждый элемент в списке ID классов является целым числом  
+    # Проверяем, что каждый элемент в списке ID классов является целым числом
     def test_class_id_types(self):
         output = [(0, 10, 20, 50, 60, 1, 0.95)]
         img = np.zeros((100, 100, 3), dtype=np.uint8)
-        _, class_ids, _ = self.detector._VehicleDetector__post_process(output, img)
-        
+        _, class_ids, _ = self.detector._VehicleDetector__post_process(
+            output, img)
+
         # Проверяем, что каждый элемент в списке class_ids является целым числом
         for class_id in class_ids:
             self.assertIsInstance(class_id, int)
 
-    # Проверяем, что каждый элемент в списке оценок является числом с плавающей запятой  
+    # Проверяем, что каждый элемент в списке оценок является числом с плавающей запятой
     def test_score_types(self):
         output = [(0, 10, 20, 50, 60, 1, 0.95)]
         img = np.zeros((100, 100, 3), dtype=np.uint8)
-        _, _, scores = self.detector._VehicleDetector__post_process(output, img)
-        
+        _, _, scores = self.detector._VehicleDetector__post_process(
+            output, img)
+
         # Проверяем, что каждый элемент в списке scores является числом с плавающей запятой
         for score in scores:
             self.assertIsInstance(score, float)
@@ -113,6 +116,7 @@ class TestVehicleDetector(unittest.TestCase):
         self.assertIsInstance(result_img, np.ndarray)
 
     # Add more tests as needed
+
 
 if __name__ == '__main__':
     unittest.main()
