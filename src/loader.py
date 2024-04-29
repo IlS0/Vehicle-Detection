@@ -1,3 +1,5 @@
+"""
+"""
 import argparse
 
 import cv2
@@ -82,4 +84,3 @@ class Loader:
 if __name__ == "__main__":
     loader = Loader()
     loader()
-    print(Loader.__doc__)

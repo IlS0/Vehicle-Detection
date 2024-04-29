@@ -53,9 +53,14 @@ __IMPORTANT:__ your Python version must be greater than or equal to `3.9`. Also,
 
 ![Recall](https://raw.githubusercontent.com/IlS0/Vehicle-Detection/main/images/R_curve.png)
 
-### Confusion matrix
+### Precision
 
-![Confusion matrix](https://raw.githubusercontent.com/IlS0/Vehicle-Detection/main/images/confusion_matrix.png)
+![Precision](https://raw.githubusercontent.com/IlS0/Vehicle-Detection/main/images/P_curve.png)
+
+### F1
+
+![F1](https://raw.githubusercontent.com/IlS0/Vehicle-Detection/main/images/F1_curve.png)
+
 
 ## Documentation
 

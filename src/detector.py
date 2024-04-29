@@ -1,3 +1,5 @@
+""" 
+"""
 import io
 import random
 import logging
@@ -162,7 +164,22 @@ class VehicleDetector():
         return bboxes, class_ids, scores
 
     def _get_yolo_out(self, img):
-        return self.__forward(img)
+        '''
+        class_id x1 y1 x2 y2
+        '''
+        bboxes, class_ids, scores = self.__post_process(self.__forward(img), img)
+
+        h, w, _ = img.shape
+            
+        yolo_format = []
+        for bbox, class_id in zip(bboxes, class_ids):
+            x0, y0, x1, y1 = bbox
+            # Normalize the bounding box coordinates
+            x0, x1 = x0 / w, x1 / w
+            y0, y1 = y0 / h, y1 / h
+            yolo_format.append([class_id, x0, y0, x1, y1])
+
+        return yolo_format
 
 
     def draw_box(self, img):
@@ -211,17 +228,16 @@ class VehicleDetector():
         Returns:
             io.BytesIO: In-memory file containing the processed video.
         """
-        fps = cap.get(cv2.CAP_PROP_FPS)
+        fps = int(cap.get(cv2.CAP_PROP_FPS))
         if (fps == 0.0):
             fps = 30
 
         output_memory_file = io.BytesIO()
         # Open "in memory file" as MP4 video output
         output_f = av.open(output_memory_file, 'w', format="mp4")
-
+        print(fps)
         # Add H.264 video stream to the MP4 container, with framerate
         stream = output_f.add_stream('h264', f"{fps}")
-
         while True:
             ret, frame = cap.read()
 
