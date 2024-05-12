@@ -48,8 +48,8 @@ class TestMain(unittest.TestCase):
         file = os.path.join("results/images/", filename[0])
         image = cv2.imread(file)
         comparison_result = image == self.main.res
-        false_indices = np.where(comparison_result == False)
-        if (np.array_equal(image, self.main.res) == False):
+        false_indices = np.where(comparison_result is False)
+        if (np.array_equal(image, self.main.res) is False):
             print("Индексы ложных элементов:")
             print(false_indices)
         self.assertTrue(np.array_equal(image, self.main.res))

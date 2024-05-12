@@ -51,7 +51,7 @@ class TestVehicleDetector(unittest.TestCase):
 
     # Проверяем, что метод __post_process возвращает не пустые списки боксов, ID классов и оценок
     def test_non_empty_lists(self):
-        output = [(0, 10, 20, 50, 60, 1, 0.95)]D
+        output = [(0, 10, 20, 50, 60, 1, 0.95)]
         img = np.zeros((100, 100, 3), dtype=np.uint8)
         bboxes, class_ids, scores = self.detector._VehicleDetector__post_process(
             output, img)
