@@ -1,4 +1,5 @@
-""" 
+"""
+This module handles the interaction between the `detector` and  `loader` modules, and saves the detection results in the same format as the input (picture or video).
 """
 from os import makedirs
 from datetime import datetime

@@ -1,4 +1,5 @@
-""" 
+"""
+This module implements an algorithm of object detection of the 9 different classes of vehicles. It also makes preprocessing and postprocessing of an input image.
 """
 import io
 import random

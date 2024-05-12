@@ -1,4 +1,5 @@
 """
+This module is responsible for correct parsing of the command line. It saves arguments necessary for correct launch and running of the `detector`.
 """
 import argparse
 
