@@ -43,7 +43,7 @@
 #           publish_dir: docs/src
 
 
-name: docs
+name: Docs
 
 # build the documentation whenever there are new commits on main
 on:
@@ -56,7 +56,7 @@ on:
 
 # security: restrict permissions for CI jobs.
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   # Build the documentation and upload the static HTML files as an artifact.
