@@ -89,16 +89,13 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     permissions:
-      pages: write
-      id-token: write
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      contents: write
+    
     steps:
-      - id: deployment
-        uses: actions/deploy-pages@v4
-        with:
-           allow_empty_commit: true
-           personal_token: ${{ secrets.DOCS_DEPLOY_TOKEN }}
-           publish_branch: gh-pages
-           publish_dir: docs/src
+        - name: Deploy docs
+          uses: peaceiris/actions-gh-pages@v3
+          with:
+              allow_empty_commit: true
+              personal_token: ${{ secrets.DOCS_DEPLOY_TOKEN }}
+              publish_branch: gh-pages
+              publish_dir: docs/src
