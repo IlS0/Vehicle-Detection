@@ -51,7 +51,7 @@ class VehicleDetector():
         self.__input_names = [inp.name for inp in self.__session.get_inputs()]
         self.__output_names = [
             out.name for out in self.__session.get_outputs()]
-
+        self.times = []
         # костыль 2
         self.__ratio = 0
         self.__dwdh = 0
@@ -213,6 +213,7 @@ class VehicleDetector():
         process_time = end_time - start_time  # Calculate processing time
         # Logging processing time
         self.logger.info(f"Processing time: {process_time:.4f} seconds")
+        self.times.append(process_time)
         # Logging detected classes
         self.logger.info(
             f"Detected classes: {', '.join(self.__names[class_id] for class_id in class_ids)}")
@@ -255,6 +256,7 @@ class VehicleDetector():
         packet = stream.encode(None)
         output_f.mux(packet)
         output_f.close()
+        self.logger.info(f"Processing time mean: {np.mean(self.times):.4f} seconds")
         return output_memory_file
 
     def __call__(self, img):

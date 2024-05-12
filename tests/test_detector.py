@@ -5,17 +5,17 @@ import numpy as np
 from detector import VehicleDetector
 
 path_img = "images/test_img.jpg"
-model_path = 'best.onnx'
+path_model = "best.onnx"
 
 
 class TestVehicleDetector(unittest.TestCase):
 
     def setUp(self):
         # Устанавливаем путь к модели и размер изображения для тестирования
-        self.model_path = model_path
+        self.path_model = path_model
         self.size = (640, 640)  # Пример размера изображения
         # Создаем экземпляр объекта VehicleDetector для тестирования
-        self.detector = VehicleDetector(self.model_path, self.size)
+        self.detector = VehicleDetector(self.path_model, self.size)
 
     # Метод для тестирования функции __letterbox
     def test_letterbox(self):
@@ -51,7 +51,7 @@ class TestVehicleDetector(unittest.TestCase):
 
     # Проверяем, что метод __post_process возвращает не пустые списки боксов, ID классов и оценок
     def test_non_empty_lists(self):
-        output = [(0, 10, 20, 50, 60, 1, 0.95)]
+        output = [(0, 10, 20, 50, 60, 1, 0.95)]D
         img = np.zeros((100, 100, 3), dtype=np.uint8)
         bboxes, class_ids, scores = self.detector._VehicleDetector__post_process(
             output, img)
