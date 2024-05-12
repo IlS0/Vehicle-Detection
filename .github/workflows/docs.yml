@@ -97,3 +97,8 @@ jobs:
     steps:
       - id: deployment
         uses: actions/deploy-pages@v4
+        with:
+           allow_empty_commit: true
+           personal_token: ${{ secrets.DOCS_DEPLOY_TOKEN }}
+           publish_branch: gh-pages
+           publish_dir: docs/src
